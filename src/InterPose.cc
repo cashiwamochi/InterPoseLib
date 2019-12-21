@@ -21,9 +21,15 @@ std::vector<Matrix4d> SE3Interpolator::Interpolate(const Matrix4d& pose_src, con
       w_x = InterPose::Utils::log(_T.block(0,0,3,3), theta);
 
       // SE(3) -> se(3)
-      Eigen::Matrix3d V = Eigen::Matrix3d::Identity() 
-                          + ((1.0-std::cos(theta))/(theta*theta))*w_x
-                          + ((theta - std::sin(theta))/(theta*theta*theta))*w_x*w_x;
+      Eigen::Matrix3d V;
+      if(theta < InterPose::Utils::EPS_to_0) {
+      V = Eigen::Matrix3d::Identity(); 
+      }
+      else {
+        V = Eigen::Matrix3d::Identity() 
+            + ((1.0-std::cos(theta))/(theta*theta))*w_x
+            + ((theta - std::sin(theta))/(theta*theta*theta))*w_x*w_x;
+      }
   
       Eigen::Vector3d t_ = V.inverse() * _T.block(0,3,3,1);
       Eigen::Vector3d w(w_x(2,1), w_x(0,2), w_x(1,0));

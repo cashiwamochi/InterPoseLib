@@ -2,7 +2,7 @@
 #include "Viewer.hpp"
 
 Viewer::Viewer()
-  : m_pose_setting{90.0, 90.0, 90.0, 30.0, 30.0, 30.0, 30}
+  : m_pose_setting{180.0, 180.0, 180.0, 50.0, 50.0, 50.0, 40}
 {
   mb_is_initialized = false;
 
@@ -45,13 +45,20 @@ void Viewer::Run() {
 
   // If true, interpolation is done and poses are shown
   pangolin::Var<bool> ui_button_update("ui.UPDATE",false,false);
+  pangolin::Var<bool> ui_button_reset("ui.RESET",false,false);
 
-  pangolin::Var<double> ui_rot_x("ui.RotX",m_pose_setting.max_rot_x/2,0,m_pose_setting.max_rot_x); // screenname, initial value, min, max
-  pangolin::Var<double> ui_rot_y("ui.RotY",m_pose_setting.max_rot_y/2,0,m_pose_setting.max_rot_y);
-  pangolin::Var<double> ui_rot_z("ui.RotZ",m_pose_setting.max_rot_z/2,0,m_pose_setting.max_rot_z);
-  pangolin::Var<double> ui_trans_x("ui.TransX",m_pose_setting.max_trans_x/2,0,m_pose_setting.max_trans_x);
-  pangolin::Var<double> ui_trans_y("ui.TransY",m_pose_setting.max_trans_y/2,0,m_pose_setting.max_trans_y);
-  pangolin::Var<double> ui_trans_z("ui.TransZ",m_pose_setting.max_trans_z/2,0,m_pose_setting.max_trans_z);
+  pangolin::Var<double>
+    ui_rot_x("ui.RotX",m_pose_setting.max_rot_x/2,-m_pose_setting.max_rot_x,m_pose_setting.max_rot_x); // screenname, initial value, min, max
+  pangolin::Var<double>
+    ui_rot_y("ui.RotY",m_pose_setting.max_rot_y/2,-m_pose_setting.max_rot_y,m_pose_setting.max_rot_y);
+  pangolin::Var<double>
+    ui_rot_z("ui.RotZ",m_pose_setting.max_rot_z/2,-m_pose_setting.max_rot_z,m_pose_setting.max_rot_z);
+  pangolin::Var<double>
+    ui_trans_x("ui.TransX",m_pose_setting.max_trans_x/2,-m_pose_setting.max_trans_x,m_pose_setting.max_trans_x);
+  pangolin::Var<double>
+    ui_trans_y("ui.TransY",m_pose_setting.max_trans_y/2,-m_pose_setting.max_trans_y,m_pose_setting.max_trans_y);
+  pangolin::Var<double>
+    ui_trans_z("ui.TransZ",m_pose_setting.max_trans_z/2,-m_pose_setting.max_trans_z,m_pose_setting.max_trans_z);
 
   // Select modes you want to draw
   pangolin::Var<bool> ui_check_se3("ui.SE3",false,true);
@@ -75,8 +82,13 @@ void Viewer::Run() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     d_cam.Activate(s_cam);
 
+    if(pangolin::Pushed(ui_button_reset)) {
+      ui_rot_x = 0.0; ui_rot_y = 0.0; ui_rot_z = 0.0;
+      ui_trans_x = 0.0; ui_trans_y = 0.0; ui_trans_z = 0.0;
+    }
+
     // update camera pose params
-    if(pangolin::Pushed(ui_button_update) || !mb_is_initialized) {
+    if(pangolin::Pushed(ui_button_update) || pangolin::Pushed(ui_button_reset) || !mb_is_initialized) {
       Eigen::Matrix4d pose = Eigen::Matrix4d::Identity(4,4);
       pose.block(0,0,3,3) = (Eigen::AngleAxisd(ui_rot_z*M_PI/180.0, Eigen::Vector3d::UnitZ())
                             * Eigen::AngleAxisd(ui_rot_y*M_PI/180.0, Eigen::Vector3d::UnitY())

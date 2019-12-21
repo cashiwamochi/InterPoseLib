@@ -21,12 +21,12 @@ class SE3Interpolator : public PoseInterpolator {
   public:
     SE3Interpolator(const int& num_steps = 3) : PoseInterpolator(num_steps) {};
 
-    virtual std::vector<Eigen::Matrix4d> Interpolate(const Eigen::Matrix4d& pose_src, const Eigen::Matrix4d& pose_dst);
+    std::vector<Eigen::Matrix4d> Interpolate(const Eigen::Matrix4d& pose_src, const Eigen::Matrix4d& pose_dst);
 };
 
 class QuatAndTInterpolator : public PoseInterpolator {
   public:
     QuatAndTInterpolator(const int& num_steps = 3) : PoseInterpolator(num_steps) {};
 
-    virtual std::vector<Eigen::Matrix4d> Interpolate(const Eigen::Matrix4d& pose_src, const Eigen::Matrix4d& pose_dst);
+    std::vector<Eigen::Matrix4d> Interpolate(const Eigen::Matrix4d& pose_src, const Eigen::Matrix4d& pose_dst);
 };

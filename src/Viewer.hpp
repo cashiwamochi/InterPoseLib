@@ -51,7 +51,7 @@ class Viewer {
 
     void DrawCamera(const float* color, const bool& axis_or_frustum);
     void DrawCameraFrustum(const float* color) const;
-    void DrawCameraAxis() const;
+    void DrawCameraAxis(const float* color) const;
 
   private:
     SE3Interpolator m_se3_interpolator;

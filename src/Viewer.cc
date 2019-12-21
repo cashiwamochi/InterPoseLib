@@ -25,7 +25,7 @@ Viewer::Viewer(const PoseSetting& _pose_setting)
 
 void Viewer::Run() {
   /*INITIALIZATION*/
-  pangolin::CreateWindowAndBind("Main", WIN_WIDTH, WIN_HEIGHT);
+  pangolin::CreateWindowAndBind("InterPoseViewer", WIN_WIDTH, WIN_HEIGHT);
   glEnable(GL_DEPTH_TEST);
 
   // Define Projection and initial ModelView matrix
@@ -144,7 +144,7 @@ void Viewer::Run() {
 
 void Viewer::DrawCamera(const float* color, const bool& axis_or_frustum) {
   if(axis_or_frustum) {
-    DrawCameraAxis();
+    DrawCameraAxis(color);
   }
   else {
     DrawCameraFrustum(color);
@@ -154,7 +154,7 @@ void Viewer::DrawCamera(const float* color, const bool& axis_or_frustum) {
 }
 
 void Viewer::DrawCameraFrustum(const float* color) const {
-  glLineWidth(3);
+  glLineWidth(1);
   glColor3f(0.0f,1.0f,1.0f);
   glColor3f(color[0],color[1],color[2]);
   glBegin(GL_LINES);
@@ -188,8 +188,8 @@ void Viewer::DrawCameraFrustum(const float* color) const {
 }
 
 // not implemented 
-void Viewer::DrawCameraAxis() const {
-  glLineWidth(3);
+void Viewer::DrawCameraAxis(const float* color) const {
+  glLineWidth(1);
   glBegin(GL_LINES);
 
   glColor3f(0.0f,0.0f,1.0f);
@@ -205,5 +205,12 @@ void Viewer::DrawCameraAxis() const {
   glVertex3f(0,0,AXIS_LENGTH);
 
   glEnd();
+
+  glPointSize(10);
+  glBegin(GL_POINTS);
+  glColor3f(color[0], color[1], color[2]);
+  glVertex3f(0.0, 0.0, 0.0);
+  glEnd();
+
   return;
 }

@@ -4,7 +4,7 @@ echo [LOG] Building Pangolin ...
 cd ./ThirdParty/Pangolin
 mkdir build && cd build
 cmake ..
-make -j2
+make -j4
 echo [LOG] Done !
 
 cd ../../..

@@ -13,7 +13,7 @@ include_directories(
   ./src
   ./viewer
   ${Pangolin_INCLUDE_DIRS}
-  /usr/inluce/eigen3
+  ./ThirdParty/eigen
 )
 
 link_directories(

@@ -18,7 +18,7 @@ std::vector<Matrix4d> SE3Interpolator::Interpolate(const Matrix4d& pose_src, con
       Eigen::Matrix3d w_x;
       // SO(3) R -> so(3) w_x (and theta)
       double theta = 0.0;
-      w_x = InterPose::Utils::log(_T.block(0,0,3,3), theta);
+      w_x = InterPose::Utils::log(static_cast<Eigen::Matrix3d>(_T.block(0,0,3,3)), theta);
 
       // SE(3) -> se(3)
       Eigen::Matrix3d V;

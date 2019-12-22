@@ -31,7 +31,7 @@ void Viewer::Run() {
   // Define Projection and initial ModelView matrix
   pangolin::OpenGlRenderState s_cam = pangolin::OpenGlRenderState(
     pangolin::ProjectionMatrix(WIN_WIDTH,WIN_HEIGHT,420,420,WIN_WIDTH/2,WIN_HEIGHT/2,0.2,1000),
-    pangolin::ModelViewLookAt(0,3,-3, 0,0,0, pangolin::AxisY)
+    pangolin::ModelViewLookAt(0,20,-20, 0,0,0, pangolin::AxisY)
     // pangolin::ModelViewLookAt(0,10,15, 0,0,0, 0.0,-1.0,0.0)
   );
 

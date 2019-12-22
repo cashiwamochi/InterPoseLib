@@ -1,5 +1,3 @@
-#include <vector>
-
 #include <pangolin/pangolin.h>
 #include <pangolin/scene/axis.h>
 #include <pangolin/scene/scenehandler.h>
@@ -17,11 +15,6 @@ class Viewer {
       const double max_trans_z;
       const int max_num_steps;
     };
-
-    // enum CamDrawType {
-    //   FRUSTUM = 0,
-    //   AXIS = 1,
-    // };
 
   public:
     Viewer();
@@ -58,8 +51,8 @@ class Viewer {
     QuatAndTInterpolator m_quat_t_interpolator;
 
     const int UI_WIDTH = 180;
-    const int WIN_WIDTH = 640;
-    const int WIN_HEIGHT = 480;
+    const int WIN_WIDTH = 1280;
+    const int WIN_HEIGHT = 960;
 
     const int FRUSTUM_WIDTH = 4; 
     const int FRUSTUM_HEIGHT = 3; 
@@ -74,7 +67,6 @@ class Viewer {
     const float m_src_dst_frustum_color[3] = {0.8, 0.1, 0.1};
 
     bool mb_is_initialized;
-    // CamDrawType m_draw_type;
 
     Eigen::Matrix4d m_Twc_src;
     Eigen::Matrix4d m_Twc_dst;

@@ -58,8 +58,8 @@ class Viewer {
     QuatAndTInterpolator m_quat_t_interpolator;
 
     const int UI_WIDTH = 180;
-    const int WIN_WIDTH = 640;
-    const int WIN_HEIGHT = 480;
+    const int WIN_WIDTH = 1280;
+    const int WIN_HEIGHT = 960;
 
     const int FRUSTUM_WIDTH = 4; 
     const int FRUSTUM_HEIGHT = 3; 

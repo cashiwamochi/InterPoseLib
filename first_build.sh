@@ -33,5 +33,3 @@ if [ -e ./build/bin/exampleInterPose ]; then
 else
   echo [LOG] Build Failed!
 fi
-
-exit 0

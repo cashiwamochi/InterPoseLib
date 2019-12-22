@@ -1,3 +1,6 @@
 [submodule "ThirdParty/Pangolin"]
 	path = ThirdParty/Pangolin
 	url = git@github.com:stevenlovegrove/Pangolin.git
+[submodule "ThirdParty/eigen"]
+	path = ThirdParty/eigen
+	url = https://gitlab.com/libeigen/eigen.git

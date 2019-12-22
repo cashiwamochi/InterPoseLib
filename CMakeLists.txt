@@ -11,8 +11,9 @@ find_package(Pangolin REQUIRED)
 
 include_directories(
   ./src
+  ./viewer
   ${Pangolin_INCLUDE_DIRS}
-  /usr/inluce/eigen3
+  ./ThirdParty/eigen
 )
 
 link_directories(
@@ -22,17 +23,25 @@ link_directories(
 add_library(
   ${PROJECT_NAME} STATIC
   src/InterPose.cc
-  src/Viewer.cc
   src/Utils.hpp
-)
-
-target_link_libraries(
-  ${PROJECT_NAME}
-  ${Pangolin_LIBRARIES}
 )
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build/bin)
 
+# Build InterPoseViewer
+add_executable(
+  exampleInterPoseViewer
+  viewer/exampleInterPoseViewer.cc
+  viewer/Viewer.cc
+)
+
+target_link_libraries(
+  exampleInterPoseViewer
+  ${PROJECT_NAME}
+  ${Pangolin_LIBRARIES}
+)
+
+# Build example InterPose
 add_executable(
   exampleInterPose
   exampleInterPose.cc

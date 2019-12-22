@@ -11,7 +11,7 @@ class PoseInterpolator {
     virtual std::vector<Eigen::Matrix4d> Interpolate(const Eigen::Matrix4d& pose_src, const Eigen::Matrix4d& pose_dst) = 0;
 
     std::vector<Eigen::Matrix4f> Interpolate(const Eigen::Matrix4f& pose_src, const Eigen::Matrix4f& pose_dst) {
-      std::vector<Eigen::Matrix4f> result(m_num_steps-1);
+      std::vector<Eigen::Matrix4f> result; result.reserve(m_num_steps-1);
 
       Eigen::Matrix4d _pose_src = pose_src.cast<double>();
       Eigen::Matrix4d _pose_dst = pose_dst.cast<double>();

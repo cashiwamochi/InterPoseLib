@@ -28,3 +28,10 @@ Those modules have been registered as submodule in this repository, so plase don
 
 ### References
 [Papar_for_SE3_SO3](https://gist.github.com/cashiwamochi/05df51370ccd1d14827fbbaba88e9cce)
+
+## なにこれ
+オドメトリやSfMをやると，フレーム間の姿勢を補間したいと思うときが時々ある．
+そんなときに使えるような補間アルゴリズムをを軽くまとめた．
+姿勢を位置と回転に分離して補間する場合は`QuatAntTInterpolator`を，あくまで剛体運動する物体に対し補間をしたい場合は`SE3Interpolator`を使う．
+`exampleInterPoseViewer`で好きな姿勢を設定して補間できるので，ちゃんと動くか確認する場合はそちらをおすすめ．
+簡潔な使い方を知りたい場合には，`exampleInterPose.cc`を読むと良い．

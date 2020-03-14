@@ -199,7 +199,6 @@ void Viewer::DrawCameraFrustum(const float* color) const {
   return;
 }
 
-// not implemented 
 void Viewer::DrawCameraAxis(const float* color) const {
   glLineWidth(1);
   glBegin(GL_LINES);

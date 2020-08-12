@@ -1,4 +1,4 @@
-# InterPose
+# InterPoseLib
 Interpolation-Pose algorithms implementation.  
 I implemented 2 methods.   
 1. Quarternion + R^3 Interpolation  

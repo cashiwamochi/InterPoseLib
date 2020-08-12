@@ -8,7 +8,7 @@ In this method, pose is described by SE(3). If you need smooth trajectory, this 
 
 ## How to use
 ```bash
-git clone --recursive git@github.com:cashiwamochi/InterPose.git
+git clone --recursive git@github.com:cashiwamochi/InterPoseLib.git
 chmod +x first_build.sh
 ./first_build.sh
 ./build/bin/exampleInterPoseViewer
